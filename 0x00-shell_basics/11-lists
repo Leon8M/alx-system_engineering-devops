@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -alR / | awk '{printf "%s%s %s %s %s %s %s %s %s %s\n", $0, (NR%2==0) ? "\n" : "", ""}' | grep -v '^$' | sed 's/:$//g'
+ls -lRa | awk '{print $9 " " $1}' | sed "s|$(pwd)/||" | awk 'NF>1 || /:$/ {if (p) {print p}; p=$0} END{print p}'
