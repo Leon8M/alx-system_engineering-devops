@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -l . .. /boot | awk '{if (NR>1) print}' | sed 's/ \.\.\// ..\//' | sed '1~2s/^/\n/'
+ls -la $(pwd)/* $(pwd)/../* /boot/*
