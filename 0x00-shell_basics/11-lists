@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lRa | awk '{print $9 " " $1}' | sed "s|$(pwd)/||" | awk 'NF>1 || /:$/ {if (p) {print p}; p=$0} END{print p}'
+ls -lR --group-directories-first | awk '/^$/{nl=1;next}{if(nl){print "";nl=0}printf "%s ",$0}END{print ""}' | awk 'NF>1{print $0": ";next}{gsub(":","");print}'
