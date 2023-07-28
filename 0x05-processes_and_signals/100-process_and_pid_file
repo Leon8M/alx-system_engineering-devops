@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script displays "To infinity and beyond" indefinitely and handles signals.
+
+cleanup() {
+    echo "Deleting PID file and terminating..."
+    rm -f /var/run/myscript.pid
+    exit 0
+}
+
+interrupt() {
+    echo "Y U no love me?!"
+}
+
+sigterm() {
+    echo "I hate the kill command"
+}
+
+trap cleanup SIGQUIT SIGTERM
+trap interrupt SIGINT
+trap sigterm SIGTERM
+
+echo $$ > /var/run/myscript.pid
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 1
+done

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script displays "To infinity and beyond" indefinitely with a 2-second delay.
+
+cleanup() {
+    echo "I am invincible!!!"
+    exit 0
+}
+
+trap cleanup SIGTERM
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
