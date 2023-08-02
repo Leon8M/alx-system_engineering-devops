@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Check if the script is run with sudo
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run this script with sudo."
+  exit 1
+fi
+cp /etc/hosts /etc/hosts.bak
+cat <<EOL > /etc/hosts
+127.0.0.2 localhost
+8.8.8.8 facebook.com
+EOL
+systemd-resolve --flush-caches
+echo "Host configurations updated. localhost now resolves to 127.0.0.2, and facebook.com now resolves to 8.8.8.8."
