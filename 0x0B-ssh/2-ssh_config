@@ -1,3 +1,3 @@
 Host *
 	passwordAuthentification no
-	IdentityFile ~/alx-system_engineering-devops/0x0B-ssh/school
+	IdentityFile ~/.ssh/school
