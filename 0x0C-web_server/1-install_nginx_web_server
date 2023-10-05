@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
+# installs nginx and configures it
 
-# Update the package list and install Nginx
 apt-get -y update
 apt-get -y install nginx
-
-# Create a simple HTML page with "Hello World!"
-echo "Hello World!" > /var/www/html/index.html
-
-# Check if Nginx is running and start it if not
-if ! pgrep -x "nginx" > /dev/null; then
-    /usr/sbin/nginx
-fi
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+service nginx restart  # Use 'restart' to ensure Nginx is running
