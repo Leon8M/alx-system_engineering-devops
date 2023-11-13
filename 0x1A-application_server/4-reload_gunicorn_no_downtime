@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Gracefully reloads Gunicorn for the AirBnB_clone_v4 application.
+
+# Get the PIDs of Gunicorn processes for the AirBnB_clone_v4 application
+PIDS=$(pgrep -f "gunicorn --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app")
+
+# Check if any Gunicorn processes are running
+if [ -n "$PIDS" ]; then
+    echo "Reloading Gunicorn gracefully..."
+    # Send the HUP signal to the Gunicorn processes
+    kill -HUP $PIDS
+    echo "Reload complete."
+else
+    echo "Gunicorn is not running."
+fi
